@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="root" class="hidden">
+    <div class="speedo">
+      <!-- Display principal da velocidade -->
+      <div class="speed-display">
+        <span id="speed">056</span>
+        <span id="unit">KM/H</span>
+      </div>
+
+      <!-- Ícones de status -->
+      <div class="status-icons">
+        <img id="icon-seatbelt" class="icon" src="icons/seatbelt.svg" />
+        <img id="icon-engine" class="icon" src="icons/engine.svg" />
+        <img id="icon-fuel" class="icon" src="icons/fuel.svg" />
+      </div>
+
+      <!-- Barra de combustível -->
+      <div class="fuel-bar">
+        <div class="fuel-fill" id="fuel-fill"></div>
+      </div>
+
+      <!-- Barras de NOS e água (opcionais) -->
+      <div class="bottles">
+        <div id="bottle-nos" class="bottle hidden">
+          <div class="bottle-fill"></div>
+          <img src="icons/nos.svg" class="bottle-icon"/>
+        </div>
+        <div id="bottle-cons2" class="bottle hidden">
+          <div class="bottle-fill"></div>
+          <img src="icons/water.svg" class="bottle-icon"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
+

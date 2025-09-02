@@ -1,0 +1,263 @@
+@font-face { 
+  font-family: "Digital"; 
+  src: url("fonts/DS-DIGI.ttf"); 
+  font-display: swap; 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#root.hidden {
+  display: none !important;
+}
+
+.speedo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 200px; /* Tamanho base */
+  height: 200px; /* Tamanho base */
+  aspect-ratio: 1/1; /* Proporção quadrada */
+  pointer-events: none;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 10000;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .speedo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Display principal da velocidade */
+.speed-display {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+#speed {
+  font-family: "Digital", monospace;
+  font-size: 72px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+#unit {
+  font-size: 18px;
+  color: #CCCCCC;
+  margin-left: 8px;
+  vertical-align: bottom;
+}
+
+/* Ícones de status */
+.status-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.icon.active {
+  opacity: 1;
+  filter: brightness(1.2);
+}
+
+#icon-engine.bad {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7471%) hue-rotate(357deg) brightness(95%) contrast(118%);
+  opacity: 1;
+}
+
+#icon-fuel.low {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7471%) hue-rotate(357deg) brightness(95%) contrast(118%); /* Vermelho */
+  opacity: 1;
+  animation: blink 1s infinite;
+}
+
+#icon-seatbelt.active {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(60%) saturate(1500%) hue-rotate(80deg) brightness(90%) contrast(100%); /* Verde */
+  opacity: 1;
+}
+
+/* Barra de combustível */
+.fuel-bar {
+  width: 200px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.fuel-fill {
+  height: 100%;
+  width: 75%;
+  background: linear-gradient(90deg, #FF0000, #FF6B6B);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Barras de NOS e água */
+.bottles {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bottle {
+  width: 30px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bottle.hidden {
+  display: none;
+}
+
+.bottle-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, #00BFFF, #0080FF);
+  transition: height 0.3s ease;
+}
+
+.bottle-icon {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+/* Animações */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+/* Estados especiais */
+.low {
+  animation: blink 1s infinite;
+}
+
+/* Responsividade para diferentes resoluções */
+@media (max-width: 480px) {
+  .speedo {
+    width: 120px;
+    height: 120px;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  #speed {
+    font-size: 40px;
+  }
+  
+  #unit {
+    font-size: 12px;
+  }
+  
+  .fuel-bar {
+    width: 80px;
+    height: 6px;
+  }
+  
+  .bottle {
+    width: 20px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .speedo {
+    width: 150px;
+    height: 150px;
+  }
+  
+  #speed {
+    font-size: 50px;
+  }
+  
+  .fuel-bar {
+    width: 120px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .speedo {
+    width: 180px;
+    height: 180px;
+  }
+  
+  #speed {
+    font-size: 60px;
+  }
+  
+  .fuel-bar {
+    width: 150px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .speedo {
+    width: 200px;
+    height: 200px;
+  }
+  
+  #speed {
+    font-size: 72px;
+  }
+  
+  .fuel-bar {
+    width: 180px;
+  }
+}
+
